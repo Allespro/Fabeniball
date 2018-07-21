@@ -1,0 +1,256 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Football.gd" type="Script" id=1]
+[ext_resource path="res://Sky.png" type="Texture" id=2]
+[ext_resource path="res://Sun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://images/Yellow circle.png" type="Texture" id=4]
+[ext_resource path="res://Goal1Area.gd" type="Script" id=5]
+[ext_resource path="res://Goal2Area.gd" type="Script" id=6]
+[ext_resource path="res://Player1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Player2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Goal1.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Goal2.tscn" type="PackedScene" id=12]
+[ext_resource path="res://grass.png" type="Texture" id=13]
+[ext_resource path="res://Grass.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Cloud1.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Cloud2.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Sounds/music.ogg" type="AudioStream" id=17]
+[ext_resource path="res://Score2.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Score1.tscn" type="PackedScene" id=19]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8.62948, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 6.49994, 68.7832 )
+
+[node name="Football" type="Node2D" index="0"]
+
+z_as_relative = false
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Sky" type="Sprite" parent="." index="0"]
+
+position = Vector2( 513.692, 270.842 )
+scale = Vector2( 1.10969, 1.87079 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sun" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 910, 90 )
+scale = Vector2( 0.65625, 0.65625 )
+
+[node name="Yellow circle" type="Sprite" parent="." index="2"]
+
+visible = false
+position = Vector2( 860, 70 )
+scale = Vector2( 0.38, 0.374486 )
+texture = ExtResource( 4 )
+
+[node name="Goal1Area" type="Area2D" parent="." index="3" groups=[
+"goal",
+]]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal1Area" index="0"]
+
+position = Vector2( 55, 465.013 )
+scale = Vector2( 2.14971, 8.97592 )
+shape = SubResource( 1 )
+
+[node name="Goal2Area" type="Area2D" parent="." index="4" groups=[
+"goal",
+]]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal2Area" index="0"]
+
+position = Vector2( 962.308, 470 )
+scale = Vector2( 2.34819, 1.28438 )
+shape = SubResource( 2 )
+
+[node name="Player-1" parent="." index="5" instance=ExtResource( 7 )]
+
+position = Vector2( 88.7298, 527.551 )
+_sections_unfolded = [ "Applied Forces", "Collision", "Pickable", "Transform" ]
+
+[node name="Player-2" parent="." index="6" instance=ExtResource( 8 )]
+
+position = Vector2( 940, 530 )
+
+[node name="Ball" parent="." index="7" instance=ExtResource( 9 )]
+
+position = Vector2( 510, -130 )
+
+[node name="Wall" parent="." index="8" instance=ExtResource( 10 )]
+
+position = Vector2( -2.13666, -41.7957 )
+
+[node name="Goal1" parent="." index="9" instance=ExtResource( 11 )]
+
+position = Vector2( 57.1241, 463.668 )
+
+[node name="Goal2" parent="." index="10" instance=ExtResource( 12 )]
+
+position = Vector2( 970, 460 )
+
+[node name="grass" type="Sprite" parent="." index="11"]
+
+position = Vector2( 130.11, 577.568 )
+scale = Vector2( 0.255524, 0.175024 )
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="grass2" type="Sprite" parent="grass" index="0"]
+
+position = Vector2( 1021.98, -0.256836 )
+texture = ExtResource( 13 )
+
+[node name="grass3" type="Sprite" parent="grass" index="1"]
+
+position = Vector2( 2043.99, 0.668457 )
+texture = ExtResource( 13 )
+
+[node name="grass4" type="Sprite" parent="grass" index="2"]
+
+position = Vector2( 3065.63, 1.26831 )
+texture = ExtResource( 13 )
+
+[node name="Grass" parent="grass" index="3" groups=[
+"solid",
+] instance=ExtResource( 14 )]
+
+position = Vector2( -904.857, -422.605 )
+scale = Vector2( 3.97134, 1.05168 )
+
+[node name="Cloud4" parent="." index="12" instance=ExtResource( 15 )]
+
+position = Vector2( -447.249, 178.693 )
+rotation = -3.14159
+scale = Vector2( 0.513957, -0.458587 )
+
+[node name="Cloud6" parent="." index="13" instance=ExtResource( 15 )]
+
+position = Vector2( -1031.97, 47.964 )
+scale = Vector2( 0.515726, 0.458587 )
+
+[node name="Cloud1" parent="." index="14" instance=ExtResource( 15 )]
+
+position = Vector2( -196.647, 65.2318 )
+scale = Vector2( 0.515726, 0.458587 )
+
+[node name="Cloud5" parent="." index="15" instance=ExtResource( 16 )]
+
+position = Vector2( 1709.5, 240.84 )
+scale = Vector2( 0.344326, 0.336861 )
+
+[node name="Cloud3" parent="." index="16" instance=ExtResource( 16 )]
+
+position = Vector2( 1562.84, 67.7522 )
+rotation = -3.14159
+scale = Vector2( 0.490384, -0.458587 )
+
+[node name="Cloud2" parent="." index="17" instance=ExtResource( 16 )]
+
+position = Vector2( 1162.21, 152.917 )
+scale = Vector2( 0.515726, 0.458587 )
+
+[node name="BackSound" type="AudioStreamPlayer" parent="." index="18"]
+
+stream = ExtResource( 17 )
+volume_db = 0.0
+autoplay = true
+mix_target = 1
+bus = "Master"
+
+[node name="GUI" type="CanvasLayer" parent="." index="19"]
+
+editor/display_folded = true
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Score2" parent="GUI" index="0" instance=ExtResource( 18 )]
+
+margin_left = 310.0
+margin_right = 440.0
+
+[node name="Score1" parent="GUI" index="1" instance=ExtResource( 19 )]
+
+margin_left = 570.0
+margin_right = 700.0
+percent_visible = 1.0
+
+[node name="Gras_area" type="Area2D" parent="." index="20" groups=[
+"solid",
+]]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gras_area" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 0, 320, 60, 370, 110, 370, 110, 380, 50, 380, 10, 420, 10, 560, 1020, 560, 1020, 420, 970, 370, 920, 370, 920, 360, 960, 360, 1020, 300, 1030, 410, 1030, 570, 0, 570, 0, 410 )
+
+[node name="Oua_area" type="Area2D" parent="." index="21" groups=[
+"out",
+]]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Oua_area" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -140, -240, -140, 700, 1190, 700, 1190, -290, -140, -290, -140, -240, 1150, -240, 1150, 640, -90, 640, -100, -240 )
+
+[connection signal="area_entered" from="Goal1Area" to="Goal1Area" method="_on_Goal1Area_area_entered"]
+
+[connection signal="area_entered" from="Goal2Area" to="Goal2Area" method="_on_Goal2Area_area_entered"]
+
+

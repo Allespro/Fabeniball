@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://goal2.png" type="Texture" id=1]
+
+[node name="Goal2" type="StaticBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -51.4114, -85.5645, 2.74239, -85.344, 45.824, -39.1773, 46.954, 92.1514, -51.4082, 92.1514, -51.5542, 102.727, 55.2374, 102.893, 55.4832, -51.1806, 10.2159, -96.8557, -51.4904, -97.2563 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 1 )
+
+

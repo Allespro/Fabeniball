@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Player1.gd" type="Script" id=1]
+[ext_resource path="res://player1.png" type="Texture" id=2]
+[ext_resource path="res://player1/player1-1.png" type="Texture" id=3]
+[ext_resource path="res://player1/player1-2.png" type="Texture" id=4]
+[ext_resource path="res://ground_check.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 12.8529, 24.0238 )
+
+[node name="Player1" type="RigidBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 38.0
+friction = 1.0
+bounce = 0.5
+gravity_scale = 4.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+visible = false
+scale = Vector2( 0.289073, 0.264979 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
+
+position = Vector2( 4.15615, -5.73945 )
+scale = Vector2( 0.290147, 0.264848 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+
+scale = Vector2( 0.293411, 0.267824 )
+build_mode = 0
+polygon = PoolVector2Array( -25.0956, -68.9103, -39.1745, -68.871, -39.1385, -61.1718, -29.0204, -61.3682, -28.9484, -40.5096, -35.7178, -40.706, -35.6098, -26.9181, -28.8044, -26.8788, -28.5883, 14.9169, -43.1354, 14.8383, -42.9914, 21.7126, -50.0128, 21.5948, -49.9048, 49.9955, -42.9914, 49.8776, -42.7393, 29.2547, -36.1139, 29.294, -35.8979, 57.0269, -29.2364, 56.9876, -29.1644, 77.9248, -7.81193, 78.0426, -7.7039, 70.4613, -14.5814, 70.5791, -14.8334, 57.0269, -0.754427, 57.0269, -0.970473, 78.0033, 20.6701, 77.8069, 20.4901, 70.8541, 13.2165, 70.8148, 13.2885, 57.2233, 20.3821, 57.184, 20.31, 29.019, 26.9714, 29.0583, 27.2595, 49.9169, 34.0289, 49.9955, 34.101, 21.9091, 27.3315, 21.7912, 27.2235, 14.5241, 12.9285, 14.9169, 12.9645, 8.23902, 20.5981, 8.55327, 20.166, -19.8867, 27.3315, -19.8474, 27.1155, -33.3603, 20.4901, -33.596, 20.31, -61.3682, 31.4719, -61.3915, 31.4719, -69.1196, 17.5374, -68.9888, 17.2854, -95.779, -25.2036, -95.8575 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ground_check" type="Area2D" parent="." index="3" groups=[
+"player1",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="collision_check" type="CollisionShape2D" parent="ground_check" index="0"]
+
+position = Vector2( -2.37494, -2.17703 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="body_entered" from="." to="." method="_on_Player1_body_entered"]
+
+[connection signal="body_exited" from="." to="." method="_on_Player1_body_exited"]
+
+[connection signal="area_entered" from="ground_check" to="ground_check" method="_on_ground_check_area_entered"]
+
+[connection signal="area_exited" from="ground_check" to="ground_check" method="_on_ground_check_area_exited"]
+
+

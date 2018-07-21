@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Player2.gd" type="Script" id=1]
+[ext_resource path="res://player2.png" type="Texture" id=2]
+[ext_resource path="res://player2/player2-1.png" type="Texture" id=3]
+[ext_resource path="res://player2/player2-2.png" type="Texture" id=4]
+[ext_resource path="res://player2/player2-3.png" type="Texture" id=5]
+[ext_resource path="res://player2/player2-4.png" type="Texture" id=6]
+[ext_resource path="res://player2/player2-5.png" type="Texture" id=7]
+[ext_resource path="res://player2/player2-6.png" type="Texture" id=8]
+[ext_resource path="res://player2/player2-7.png" type="Texture" id=9]
+[ext_resource path="res://ground_check2.gd" type="Script" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="Player2" type="RigidBody2D"]
+
+position = Vector2( 0.153889, 0 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 38.0
+friction = 1.0
+bounce = 0.5
+gravity_scale = 4.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+visible = false
+scale = Vector2( 0.289073, 0.264979 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -3.98208, -15.8392, -3.98208, -11.9984, -1.77541, -12.0712, -1.75459, -10.2185, -4.04194, -10.2505, -3.99249, -8.41774, -1.81705, -8.39692, -1.78582, -6.50251, -4.09658, -6.4817, -4.06634, -4.73439, -1.85868, -4.7226, -1.78582, -2.90106, 0.202266, -2.84901, 0.139814, 2.74053, -1.97342, 2.82055, -1.95236, 4.49962, -4.32158, 4.5051, -14.3239, 4.50283, -14.1818, 6.48806, -8.11342, 6.54323, -8.05826, 8.19825, -6.1274, 8.281, -6.15926, 10.0692, -0.135731, 10.0692, -0.0846825, 17.5731, 0.115773, 19.3827, -2.05365, 19.4265, -1.99886, 21.3987, 2.35093, 21.322, 2.32902, 19.5689, 6.31725, 19.4922, 6.3282, 21.333, 10.5465, 21.3549, 10.4698, 19.4046, 14.5895, 19.4265, 14.6005, 15.767, 12.6064, 15.7341, 12.5845, 12.0746, 10.4808, 12.1294, 10.415, 10.1243, 14.6114, 10.1243, 14.6289, 2.75094, 12.4847, 2.73012, 12.6096, -0.975423, 10.4133, -0.954605, 10.4966, -8.36569, 14.5977, -8.31365, 14.5977, -10.333, 12.5055, -10.333, 12.568, -19.5656, 10.4758, -19.5864, 10.4862, -21.3871, 0.136105, -21.4004, 0.118996, -19.5448, -1.95668, -19.4773, -1.90032, -15.8705 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
+
+position = Vector2( 0.211824, -0.173443 )
+scale = Vector2( 0.293259, 0.265389 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 2
+playing = true
+
+[node name="ground_check2" type="Area2D" parent="." index="3" groups=[
+"player2",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground_check2" index="0"]
+
+position = Vector2( 0.383456, 1.32304 )
+scale = Vector2( 1.62301, 2.45788 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Player2_body_entered"]
+
+[connection signal="body_exited" from="." to="." method="_on_Player2_body_exited"]
+
+[connection signal="area_entered" from="ground_check2" to="ground_check2" method="_on_ground_check2_area_entered"]
+
+[connection signal="area_exited" from="ground_check2" to="ground_check2" method="_on_ground_check2_area_exited"]
+
+
